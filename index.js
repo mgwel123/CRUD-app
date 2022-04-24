@@ -5,19 +5,25 @@ const deleteIceCream = document.querySelector('#deleteIceCream');
 const addToppings = document.querySelector('#addToppings');
 const deleteToppings = document.querySelector('#deleteTopping');
 
-
+let output = '';
+const url = 'https://crudcrud.com/api/8b25b7bf8acd48c694935f90eb63c6b8/icecream';
 
 
 createIceCream.addEventListener('click', () => {
 
 });
 
-
-let output = '';
-const url = 'https://crudcrud.com/api/8b25b7bf8acd48c694935f90eb63c6b8/icecream';
-
-fetch(url)
-    .then(res => res.json())
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        "flavor": "flavor",
+        "scoops": Number, 
+    })
+})
+    .then(response => response.json())
 
     .then(data => {
         data.forEach(post => {
@@ -65,3 +71,5 @@ fetch(url)
         });
         iceCreamList.innerHTML = output;
     })
+
+
